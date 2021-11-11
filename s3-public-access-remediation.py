@@ -3,7 +3,10 @@ import json
 
 # Retrieve a bucket's policy
 s3 = boto3.client('s3')
+# response = s3.list_buckets()
 result = s3.get_bucket_policy(Bucket='obfuscated-for-github')
+
+print(response)
 
 # some funky stuff you have to do to format the returned object properly
 parsed = json.loads(result['Policy'])
@@ -35,4 +38,4 @@ if shorthand['Effect'] == "Allow" and shorthand['Principal'] == "*" and shorthan
     # format the policy for sending to AWS api
     fixed_policy = json.dumps(fixed_policy)
     
-    s3.put_bucket_policy(Bucket="wutkanitest",Policy=fixed_policy)
+    s3.put_bucket_policy(Bucket="obfuscated-for-github",Policy=fixed_policy)
