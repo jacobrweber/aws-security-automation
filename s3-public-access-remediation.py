@@ -16,8 +16,9 @@ all_buckets = list(buckets['Name'] for buckets in response['Buckets'])
 for each_bucket in all_buckets:
     try:
         result = s3.get_bucket_policy(Bucket=each_bucket)
+    
     except botocore.exceptions.ClientError as error:
-         print(f"No policy is attached to {each_bucket}")
+         print(f"\nNo policy is attached to {each_bucket}")
          pass
 
 
